@@ -36,6 +36,13 @@ def preprocessing(img):
     img = crop(scale(img))
     img = cv2.equalizeHist(img)
  #   cv2.imshow('resized2 image', img)
+    v = np.median(img)
+    sigma = 0.33
+    #---- Apply automatic Canny edge detection using the computed median----
+    lower = int(max(0, (1.0 - sigma) * v))
+    upper = int(min(255, (1.0 + sigma) * v))
+    #img = cv2.Canny(img, lower, upper)
+
     img  = cv2.Canny(img,100,200)
    # cv2.imshow('edge image', img)
     kernelC = cv2.getStructuringElement(cv2.MORPH_RECT, (10,10))
