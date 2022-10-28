@@ -2,28 +2,33 @@ import cv2
 from cv2 import imshow
 import numpy as np
 def pixiExt ( img , x0 , y0 , radius):
-    #loop through image img
     distCenter = []
-    numPixels = 0
+    n1 = n2 = n = 0
+    p1 = p2 = pm = 0
+    i = []
     for y in range ( len ( img )):
         distCenter.append([])
         for x in range ( len ( img [ y ])):
             #if pixel is within radius of (x0, y0)
             dist_from_center = np.sqrt (( x0 - x ) ** 2 + ( y0 - y ) ** 2 )
             mask0 = dist_from_center <= radius
-            numPixels += mask0
             mask1 = dist_from_center <= radius*1.25
-            distCenter[-1].append(float(not mask0 and mask1))
+            difference = not mask0 and mask1
+            distCenter[-1].append(float(difference))
+            n1 += mask0 #This is the amount of pixels in the inner most circle
+            n += mask1 #This is the amount of pixels in the union of the two circles
+            if mask0:
+                p1 += img [ y ][ x ] #This is the inner most circle
+            if mask1:
+                pm += img [ y ][ x ] #This is the union of the two circles
+                i.append(img [ y ][ x ]) #This is the intensity of the pixels in the union of the two circles
+    n2 = n - n1 #This is the outer most circle
+    pm = pm / n #Average intensity of the union of the two circles
+    p2 = pm - p1 #Intensity of the outer most circle
+    p2 = p2 / n2 #Average intensity of the outer most circle
+    p1 = p1 / n1 #Average intensity of the inner most circle
+    return n, n1, n2, p1, p2, pm, i
 
-    #mask0 = dist_from_center <= radius
-    #mask1 = dist_from_center <= radius *1.25
-    #mask2 = mask1 & ~ mask0
-    print(numPixels)
-    return distCenter
-value1 = False
-value2 = False
-print(value1 & ~ value2)
-print(not value2 and value1)
 coconut = cv2.imread('Coconuts\coconut.png')
 mask = pixiExt(coconut, 100, 100, 50)
 mask = np.array(mask)
