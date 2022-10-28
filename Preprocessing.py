@@ -34,11 +34,21 @@ def crop(img):
 
 def preprocessing(img): 
     img = crop(scale(img))
+    img = cv2.equalizeHist(img)
+    cv2.imshow('resized2 image', img)
+    img  = cv2.Canny(img,10,90)
+    cv2.imshow('edge image', img)
+    kernelC = cv2.getStructuringElement(cv2.MORPH_RECT, (8,8))
+    img  = cv2.morphologyEx(img, cv2.MORPH_CLOSE, kernelC)
+    cv2.imshow('close',img)
+    kernelO = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (7,7))
+    img  = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernelO)
+    img = cv2.bitwise_not(img)
     return img
 
 
 
-coconut = cv2.imread('Coconuts\coconut2.png')
+coconut = cv2.imread('Coconuts\coconut.png')
 #coconut1 = cv2.imread('Coconuts\coconut1.png')
 #coconut2 = cv2.imread('Coconuts\coconut2.png')
 
