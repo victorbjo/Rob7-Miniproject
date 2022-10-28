@@ -16,7 +16,7 @@ def scale(img):
     else:
         tempHeight = prefferedHeight
         tempWidth = int(prefferedHeight/currentHeight*currentWidth)
-    print(tempWidth, tempHeight)
+    #print(tempWidth, tempHeight)
     img = cv2.resize(img, (tempWidth, tempHeight))
     return img
 def crop(img):
