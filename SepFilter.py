@@ -29,6 +29,18 @@ def pixiExt ( img , x0 , y0 , radius):
     p1 = p1 / n1 #Average intensity of the inner most circle
     return n, n1, n2, p1, p2, pm, i
 
+def SepFil(n,n1,n2,p1,p2,pm,i):
+    x = 0
+    A = 0
+    for x in range(n):
+        A  += (i[x]-pm)**2
+    B = (n1 * (p1 - pm)**2) + (n2 * (p2 - pm)**2)
+
+    WeirdN = B/A
+    return WeirdN
+
+
+
 coconut = cv2.imread('Coconuts\coconut.png')
 mask = pixiExt(coconut, 100, 100, 50)
 mask = np.array(mask)
