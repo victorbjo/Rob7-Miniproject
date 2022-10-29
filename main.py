@@ -4,6 +4,7 @@ from xml.etree.ElementInclude import include
 import cv2
 from cv2 import HoughCircles
 import numpy as np
+import SepFilter
 def main(path): #Pretty much pseudo code
     picture = cv2.imread(path)
     #picture = preprocess()
@@ -16,3 +17,9 @@ def main(path): #Pretty much pseudo code
                 results.append[HoughCircles(picture)]
 if __name__ == "__main__":
     main('Coconuts\coconut1.png')
+
+'''
+TODO: We need to fix preprocessing, and make it easilier callable
+We need to fix SepFilter to be actually callable, and make sure no code runs on init
+We need to make sure that HoughCircles is actually callable. Not sure about .ipynb??? But iDunno
+'''
