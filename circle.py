@@ -42,6 +42,6 @@ def circleDrawing( x0, y0, r, width = 320, height = 240):
     value=[0])
 
 
-    return array_padded
+    return array
 
 # plt.imshow(array)
