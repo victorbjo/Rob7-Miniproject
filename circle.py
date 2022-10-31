@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import cv2
 RR = 50
 
-def circleDrawing(width = 320, height = 240, x0, y0, r):
+def circleDrawing( x0, y0, r, width = 320, height = 240):
     # creating dummy metrices to calculate distance to the center
     row = np.arange(height)
     column = np.arange(width)
@@ -39,8 +39,7 @@ def circleDrawing(width = 320, height = 240, x0, y0, r):
     left=bordersize,
     right=bordersize,
     borderType=cv2.BORDER_CONSTANT,
-    value=[0]
-)
+    value=[0])
 
 
     return array_padded
