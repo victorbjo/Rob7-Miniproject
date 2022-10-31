@@ -2,9 +2,10 @@ import numpy.matlib
 import numpy as np
 import pandas
 import matplotlib.pyplot as plt
+import cv2
+RR = 50
 
-
-def circleDrawing(width = 320, height = 240, x0, y0, r):
+def circleDrawing( x0, y0, r, width = 320, height = 240):
     # creating dummy metrices to calculate distance to the center
     row = np.arange(height)
     column = np.arange(width)
@@ -20,7 +21,7 @@ def circleDrawing(width = 320, height = 240, x0, y0, r):
     dist = np.power(diff_row + diff_colum, 0.5)
     df = pandas.DataFrame(dist)
     mask1 = pandas.DataFrame(np.zeros((height, width)))
-    threshold = 0.55
+    threshold = 1.5
     mask1[df > (r - threshold)] = 1
     mask2 = pandas.DataFrame(np.zeros((height, width)))
     mask2[df < (r + threshold)] = 1
@@ -30,6 +31,16 @@ def circleDrawing(width = 320, height = 240, x0, y0, r):
     mask[mask == 2] = 1
 
     array = pandas.DataFrame.to_numpy(mask)
+    bordersize = RR
+    array_padded = cv2.copyMakeBorder(
+    array,
+    top=bordersize,
+    bottom=bordersize,
+    left=bordersize,
+    right=bordersize,
+    borderType=cv2.BORDER_CONSTANT,
+    value=[0])
+
 
     return array
 
