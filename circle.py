@@ -1,27 +1,28 @@
+from turtle import width
 import numpy.matlib
 import numpy as np
 import pandas
 import matplotlib.pyplot as plt
 import cv2
 RR = 50
-def distance_list(size, pos):
-    pos_list = np.arange(size)
+def distance_list(height_size, width_size, pos_x, pos_y):
+    height_list = np.arange(height_size)
+    width_list = np.arange(width_size)
 
     # distance calculation of all matrix elements to the center of the circle
-    diff_list = np.power(pos_list - pos, 2)
-    return diff_list
-
+    y_diff_list = np.power(height_list - pos_y, 2)
+    x_diff_list = np.power(width_list - pos_x, 2)  
+    return x_diff_list, y_diff_list
+# dist_list_row = distance_list(height, y0)
+# dist_list_column = distance_list(width, x0)
    
 def circleDrawing( x0, y0, r, width = 320, height = 240):
     # creating dummy metrices to calculate distance to the center
-    row = np.arange(height)
-    column = np.arange(width)
-
     # distance calculation of all matrix elements to the center of the circle
-    diff_row = distance_list(height, y0)
-    diff_column = distance_list(width, x0)
-    row_m = np.matlib.repmat(diff_row, width, 1)
-    column_m = np.matlib.repmat(diff_column, height, 1)
+    diff_x, diff_y = distance_list(height, width, x0, y0)
+
+    row_m = np.matlib.repmat(diff_y, width, 1)
+    column_m = np.matlib.repmat(diff_x, height, 1)
     # column_m = np.transpose(column_m)
     row_m = np.transpose(row_m)
 
@@ -29,7 +30,7 @@ def circleDrawing( x0, y0, r, width = 320, height = 240):
     dist = np.power(row_m + column_m, 0.5)
     df = pandas.DataFrame(dist)
     mask1 = pandas.DataFrame(np.zeros((height, width)))
-    threshold = 2.5
+    threshold = 0.6
     mask1[df > (r - threshold)] = 1
     mask2 = pandas.DataFrame(np.zeros((height, width)))
     mask2[df < (r + threshold)] = 1
