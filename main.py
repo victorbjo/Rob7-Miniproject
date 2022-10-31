@@ -2,9 +2,10 @@ import cv2
 from cv2 import HoughCircles
 import numpy as np
 import SepFilter
+import Preprocessing as pp
 def main(path): #Pretty much pseudo code
     picture = cv2.imread(path)
-    #picture = preprocess()
+    picture = pp.preprocess(picture)
     width = len(picture[0])
     height = len(picture)
     #Run function x for every 20 pixel
