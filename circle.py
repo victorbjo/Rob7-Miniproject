@@ -2,7 +2,8 @@ import numpy.matlib
 import numpy as np
 import pandas
 import matplotlib.pyplot as plt
-
+import cv2
+RR = 50
 
 def circleDrawing(width = 320, height = 240, x0, y0, r):
     # creating dummy metrices to calculate distance to the center
@@ -30,7 +31,18 @@ def circleDrawing(width = 320, height = 240, x0, y0, r):
     mask[mask == 2] = 1
 
     array = pandas.DataFrame.to_numpy(mask)
+    bordersize = RR
+    array_padded = cv2.copyMakeBorder(
+    array,
+    top=bordersize,
+    bottom=bordersize,
+    left=bordersize,
+    right=bordersize,
+    borderType=cv2.BORDER_CONSTANT,
+    value=[0]
+)
 
-    return array
+
+    return array_padded
 
 # plt.imshow(array)
