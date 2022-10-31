@@ -21,7 +21,7 @@ def circleDrawing( x0, y0, r, width = 320, height = 240):
     dist = np.power(diff_row + diff_colum, 0.5)
     df = pandas.DataFrame(dist)
     mask1 = pandas.DataFrame(np.zeros((height, width)))
-    threshold = 1.5
+    threshold = 2.5
     mask1[df > (r - threshold)] = 1
     mask2 = pandas.DataFrame(np.zeros((height, width)))
     mask2[df < (r + threshold)] = 1
