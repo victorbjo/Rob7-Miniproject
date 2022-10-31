@@ -22,7 +22,7 @@ def distance_list(height_size, width_size, pos_x, pos_y):
 # dist_list_row = distance_list(height, y0)
 # dist_list_column = distance_list(width, x0)
    
-def circleDrawing( x0, y0, r, width = 320, height = 240):
+def circleDrawing( x0, y0, r, width = 320, height = 240, dist1 = 0):
     # creating dummy metrices to calculate distance to the center
     # distance calculation of all matrix elements to the center of the circle
     # diff_x, diff_y = distance_list(height, width, x0, y0)
@@ -47,17 +47,6 @@ def circleDrawing( x0, y0, r, width = 320, height = 240):
     mask[mask == 2] = 1
 
     array = pandas.DataFrame.to_numpy(mask)
-    # bordersize = RR
-    # array_padded = cv2.copyMakeBorder(
-    # array,
-    # top=bordersize,
-    # bottom=bordersize,
-    # left=bordersize,
-    # right=bordersize,
-    # borderType=cv2.BORDER_CONSTANT,
-    # value=[0])
-
-
     return array
 
 # plt.imshow(array)
