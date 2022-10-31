@@ -10,8 +10,11 @@ def main(path): #Pretty much pseudo code
     #Run function x for every 20 pixel
     for y in range(0, height, 20):
         for x in range(0, width, 20):
-            if sepFilter(picture) < 0.1:
-                results.append[HoughCircles(picture)]
+            sepFilterResults = SepFilter.sepFilter(picture, x, y)
+            for idx, result in enumerate(sepFilterResults):
+                if result >= 0.1:
+                    r = idx*10+20
+                    HoughCircles(picture, r)
 if __name__ == "__main__":
     main('Coconuts\coconut1.png')
 
