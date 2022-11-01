@@ -16,10 +16,12 @@ def main(path): #Pretty much pseudo code
     for y in range(0, height, 40):
         for x in range(0, width, 40):
             sepFilterResults = SepFilter.sepFil(picture, x, y)
+            hough_circle_list = []
             for idx, result in enumerate(sepFilterResults):
                 if result >= 0.1:
                     r = idx*10+20
-                    isCircle, circled_object, img_blank_larg_val, mean_x, mean_y = HoughCircles(picture, x, y, r)
+                    isCircle, circled_object, hough_score, mean_x, mean_y = HoughCircles(picture, x, y, r)
+                    hough_circle_list.append(isCircle, circled_object, hough_score, mean_x, mean_y)
                     print(result)
                     print(idx)
                     print(y)
