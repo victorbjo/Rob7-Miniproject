@@ -36,9 +36,9 @@ def preprocessing(img):
     img = crop(scale(img))
     img = cv2.equalizeHist(img)
     #cv2.imshow('resized2 image', img)
-    img  = cv2.Canny(img,50,200)
+    img  = cv2.Canny(img,250,255)
     #cv2.imshow('edge image', img)
-    kernelC = cv2.getStructuringElement(cv2.MORPH_RECT, (2,2))
+    kernelC = cv2.getStructuringElement(cv2.MORPH_RECT, (4,4))
     img  = cv2.morphologyEx(img, cv2.MORPH_CLOSE, kernelC)
     #img = cv2.bitwise_not(img)
     #cv2.imshow('close',img)
@@ -50,21 +50,21 @@ def preprocessing(img):
     return img
 
 
-#if __name__ == "__main__":
-    #coconut = cv2.imread('Coconuts\coconut2t.png')
-    #gray = cv2.cvtColor(coconut,cv2.COLOR_BGR2GRAY)
+if __name__ == "__main__":
+    coconut = cv2.imread('Coconuts\coconut2.png')
+    gray = cv2.cvtColor(coconut,cv2.COLOR_BGR2GRAY)
     #coconut1 = cv2.imread('Coconuts\coconut1.png')
     #coconut2 = cv2.imread('Coconuts\coconut2.png')
 
     #cv2.imshow('asd', coconut1)
     #cv2.waitKey()
-    #coconutRe = preprocessing(coconut)
+    coconutRe = preprocessing(coconut)
     #coconutRe1 = preprocessing(coconut1)
     #coconutRe2 = preprocessing(coconut2)
 
-    #cv2.imshow('original image', coconut)
-    #cv2.imshow('resized image', coconutRe)
+    cv2.imshow('original image', crop(coconut))
+    cv2.imshow('resized image', coconutRe)
     #cv2.imshow('resized1 image', coconutRe1)
     #cv2.imshow('resized2 image', coconutRe2)
-    #cv2.waitKey()
+    cv2.waitKey()
 
