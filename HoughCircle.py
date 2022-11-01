@@ -17,15 +17,10 @@ img = cv2.imread('Coconuts\coconut.png')
 def HoughCircles(picture, window_i, window_j, rr):
     isCircle = 0
     height, width= picture.shape
-# img1 = Preprocessing.preprocessing(img) # already preprocessed
-
-# plt.imshow(img1, cmap = 'gray')
-# img2 = sp.sepFil(img1,)
-
+    # img1 = Preprocessing.preprocessing(img) # already preprocessed
     img_blank = np.zeros( picture.shape)
     circled_object = img_blank
      
-    # print(img_blank.shape)
     # a_test = circleDrawing(290, 100, 35, width, height)
     # plt.imshow(a_test, cmap='gray')
 
