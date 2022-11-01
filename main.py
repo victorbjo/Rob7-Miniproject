@@ -6,8 +6,6 @@ import Preprocessing as pp
 
 def main(path): #Pretty much pseudo code
     picture = cv2.imread(path)
-    cv2.imshow('a', picture)
-    cv2.waitKey()
     picture = pp.preprocessing(picture)
     width = len(picture[0])
     height = len(picture)
@@ -17,7 +15,7 @@ def main(path): #Pretty much pseudo code
         for x in range(0, width, 40):
             sepFilterResults = SepFilter.sepFil(picture, x, y)
             for idx, result in enumerate(sepFilterResults):
-                if result >= 0.1:
+                if result >= 0.01:
                     r = idx*10+20
                     #HoughCircles(picture, r)
                     print(result)
@@ -25,12 +23,13 @@ def main(path): #Pretty much pseudo code
                     print(y)
                     print(x)
                     print(result)
+                #print(result)
         print(y)
     cv2.imshow('a', picture)
     cv2.waitKey()
 
 if __name__ == "__main__":
-    main('Coconuts\test.png')
+    main('Coconuts\circles.png')
 
 '''
 TODO: We need to fix preprocessing, and make it easilier callable
