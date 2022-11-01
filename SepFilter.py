@@ -49,8 +49,8 @@ def sepFil(img,x0,y0): #rL and rU are multiples of 10
     rL = 20
     rU = 50
     Scores = []
-    for x in range(4) :
-        r = x*10+rL
+    for x in range(8):
+        r = x*5+rL
         n, n1, n2, p1, p2, pm, i = pixiExt(img,x0,y0,r)
         Scores.append(SepScore(n,n1,n2,p1,p2,pm,i))
     return Scores
