@@ -10,7 +10,7 @@ import pandas as pd
 # width = 320
 # height = 240
 
-threshold_circle_check =  10
+threshold_circle_check =  20
 
 img = cv2.imread('Coconuts\coconut.png')
 
@@ -35,10 +35,12 @@ def HoughCircles(picture, window_i, window_j, rr):
         for j in range(max(window_j - rr, 0), min(window_j + rr, height)):
             if picture[j, i]>0:
                 img_blank = img_blank + circleDrawing(i, j, rr, width, height)
-
+    plt.imshow(img_blank,cmap='gray')
     img_blank_larg_ind = largest_indices(img_blank, int(rr/4)) ###################### maybe change 2 * rr
     mean_x = int(img_blank_larg_ind[1].sum()/rr)
     mean_y = int(img_blank_larg_ind[0].sum()/rr)
+    print(mean_x)
+    print( mean_y)
     img_blank_larg_val = np.mean(img_blank[img_blank_larg_ind])
     if np.power(np.power(np.abs(window_i - mean_x),2)+np.power(np.abs(window_j - mean_y),2),0.5) < threshold_circle_check :
         isCircle = 1
