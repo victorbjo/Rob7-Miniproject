@@ -17,7 +17,7 @@ def main(path): #Pretty much pseudo code
             for idx, result in enumerate(sepFilterResults):
                 if result >= 0.01:
                     r = idx*10+20
-                    #HoughCircles(picture, r)
+                    #HoughCircles(picture, x, y, r)
                     print(result)
                     print(idx)
                     print(y)
