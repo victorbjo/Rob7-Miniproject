@@ -36,9 +36,10 @@ def HoughCircles(picture, window_i, window_j, rr):
             if picture[j, i]>0:
                 img_blank = img_blank + circleDrawing(i, j, rr, width, height)
     plt.imshow(img_blank,cmap='gray')
-    img_blank_larg_ind = largest_indices(img_blank, int(rr/4)) ###################### maybe change 2 * rr
-    mean_x = int(img_blank_larg_ind[1].sum()/rr)
-    mean_y = int(img_blank_larg_ind[0].sum()/rr)
+    number_mean = int(rr/4)
+    img_blank_larg_ind = largest_indices(img_blank, number_mean) ###################### maybe change 2 * rr
+    mean_x = int(img_blank_larg_ind[1].sum()/number_mean)
+    mean_y = int(img_blank_larg_ind[0].sum()/number_mean)
     print(mean_x)
     print( mean_y)
     img_blank_larg_val = np.mean(img_blank[img_blank_larg_ind])
