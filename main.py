@@ -3,8 +3,11 @@ from cv2 import HoughCircles
 import numpy as np
 import SepFilter
 import Preprocessing as pp
+
 def main(path): #Pretty much pseudo code
     picture = cv2.imread(path)
+    cv2.imshow('a', picture)
+    cv2.waitKey()
     picture = pp.preprocessing(picture)
     width = len(picture[0])
     height = len(picture)
