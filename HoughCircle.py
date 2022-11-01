@@ -13,7 +13,6 @@ import pandas as pd
 threshold_circle_check =  10
 
 img = cv2.imread('Coconuts\coconut.png')
-img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 def HoughCircles(picture, window_i, window_j, rr):
     isCircle = 0
@@ -23,7 +22,9 @@ def HoughCircles(picture, window_i, window_j, rr):
 # plt.imshow(img1, cmap = 'gray')
 # img2 = sp.sepFil(img1,)
 
-    img_blank = np.zeros( picture.shape) 
+    img_blank = np.zeros( picture.shape)
+    circled_object = img_blank
+     
     # print(img_blank.shape)
     # a_test = circleDrawing(290, 100, 35, width, height)
     # plt.imshow(a_test, cmap='gray')
@@ -46,7 +47,8 @@ def HoughCircles(picture, window_i, window_j, rr):
     img_blank_larg_val = np.mean(img_blank[img_blank_larg_ind])
     if np.power(np.power(np.abs(window_i - mean_x),2)+np.power(np.abs(window_j - mean_y),2),0.5) < threshold_circle_check :
         isCircle = 1
-    return isCircle, img_blank_larg_val, mean_x, mean_y
+        circled_object = picture + circleDrawing(mean_x, mean_y, rr, width, height)*100
+    return isCircle, circled_object, img_blank_larg_val, mean_x, mean_y
         
         
 
