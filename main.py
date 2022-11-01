@@ -15,7 +15,7 @@ def main(path): #Pretty much pseudo code
             for idx, result in enumerate(sepFilterResults):
                 if result >= 0.1:
                     r = idx*10+20
-                    HoughCircles(picture, r)
+                    HoughCircles(picture, x, y, r)
 if __name__ == "__main__":
     main('Coconuts\coconut1.png')
 
