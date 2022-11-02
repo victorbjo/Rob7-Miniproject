@@ -59,4 +59,9 @@ def largest_indices(ary, n):
     return np.unravel_index(indices, ary.shape)
 
 # int(largest_indices(img_blank, 10)[0].sum()/10)
+def append_hough_row(df, new_row):
+    columns=['IS CIRCLE', 'CIRCLED IMG', 'HOUGH SCORE', 'MEAN X', ' MEAN Y']
+    return pd.concat([ df, pd.DataFrame([new_row], columns=columns_name())], join = "inner")
+def columns_name():
+    return ['IS CIRCLE', 'CIRCLED IMG', 'HOUGH SCORE', 'MEAN X', ' MEAN Y']
 
