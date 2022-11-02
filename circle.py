@@ -11,8 +11,8 @@ def distance_list(height_size, width_size, pos_x, pos_y):
     # distance calculation of all matrix elements to the center of the circle
     y_diff_list = np.power(height_list - pos_y, 2)
     x_diff_list = np.power(width_list - pos_x, 2) 
-    row_m = np.matlib.repmat(y_diff_list, width_size, 1)
-    column_m = np.matlib.repmat(x_diff_list, height_size, 1)
+    row_m = np.matlib.repmat(y_diff_list, width_size, 1)  # type: ignore
+    column_m = np.matlib.repmat(x_diff_list, height_size, 1) # type: ignore
     row_m = np.transpose(row_m)
 
     # drawing the circle
