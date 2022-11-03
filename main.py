@@ -42,10 +42,11 @@ def main(path): #Pretty much pseudo code
                     print("hough score")
                     print(hough_score)
                     # plt.imshow(circled_object)
-                    cv2.imshow('possible circle',circled_object)
-                    cv2.waitKey()
                     if isCircle == 1 :
-                        print("circle detected!")
+                        print("circle detected!")   
+                        cv2.imshow('possible circle',circled_object)
+                        cv2.waitKey()
+
             
             # print(hough_circle_dataframe[hough_circle_dataframe['IS CIRCLE']])
         
@@ -54,7 +55,7 @@ def main(path): #Pretty much pseudo code
     cv2.waitKey()
 
 if __name__ == "__main__":
-    main('Coconuts\coconut_1circle.png')
+    main('Coconuts\coconutT.png')
 
 '''
 TODO: We need to fix preprocessing, and make it easilier callable
