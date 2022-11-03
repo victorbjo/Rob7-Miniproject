@@ -25,8 +25,8 @@ def main(path): #Pretty much pseudo code
             sepFilterResults = SepFilter.sepFil(picture, x, y)
             hough_circle_dataframe = HC.initial_hough_Dataframe()
             for idx, result in enumerate(sepFilterResults):
-                if result >= 0.04:
-                    r = idx*5+10
+                if result >= 0.09:
+                    r = idx*10+10
                     isCircle, circled_object, hough_score, mean_x, mean_y = HC.HoughCircles(picture, x, y, r)
                     new_row = [isCircle, circled_object, hough_score, mean_x, mean_y]
                     HC.append_hough_row(hough_circle_dataframe, new_row)
