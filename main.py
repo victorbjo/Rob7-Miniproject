@@ -54,11 +54,11 @@ def main(path): #Pretty much pseudo code
             # print(hough_circle_dataframe[hough_circle_dataframe['IS CIRCLE']])
         
 
-    cv2.imshow('a', picture)
+    cv2.imshow('last time ', picture)
     cv2.waitKey()
 
 if __name__ == "__main__":
-    main('Coconuts\circles_pieces.png')
+    main(r"Coconuts\\test.jpg")
 
 '''
 TODO: We need to fix preprocessing, and make it easilier callable
