@@ -58,7 +58,7 @@ def main(path): #Pretty much pseudo code
     cv2.waitKey()
 
 if __name__ == "__main__":
-    main(r"Coconuts\\test.jpg")
+    main("Coconuts\\circless.png")
 
 '''
 TODO: We need to fix preprocessing, and make it easilier callable
