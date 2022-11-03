@@ -27,6 +27,7 @@ def circleDrawing( x0, y0, r, width = 320, height = 240, threshold = 0.6):
     # # drawing the circle
 
     dist = distance_list(height, width, x0, y0)
+    print(threshold)
     df = pandas.DataFrame(dist)
     mask1 = pandas.DataFrame(np.zeros((height, width)))
 
