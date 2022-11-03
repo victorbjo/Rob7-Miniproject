@@ -40,11 +40,15 @@ def HoughCircles(picture, window_i, window_j, rr):
     img_blank_larg_ind = largest_indices(img_blank, number_mean) ###################### maybe change 2 * rr
     mean_x = int(img_blank_larg_ind[1].sum()/number_mean)
     mean_y = int(img_blank_larg_ind[0].sum()/number_mean)
-    print(np.power(np.power(np.abs(window_i - mean_x),2)+np.power(np.abs(window_j - mean_y),2),0.5))
+    print("distance")
+    print(np.power(np.power(np.abs(window_i + rr - mean_x),2)+np.power(np.abs(window_j + rr - mean_y),2),0.5))
+    print("radius")
+    print(rr)
     # print(mean_x)
     # print( mean_y)
     img_blank_larg_val = np.mean(img_blank[img_blank_larg_ind])
-    if np.power(np.power(np.abs(window_i - mean_x),2)+np.power(np.abs(window_j - mean_y),2),0.5) < threshold_circle_check :
+    if np.power(np.power(np.abs(window_i +rr - mean_x),2)+np.power(np.abs(window_j +rr - mean_y),2),0.5) < threshold_circle_check :
+        print('immmmmmmmmmmmm heeeeeeeeeeeeeeeeeeeere')
         isCircle = 1
         circled_object = picture + circleDrawing(mean_x, mean_y, rr, width, height)*200
     return isCircle, circled_object, img_blank_larg_val, mean_x, mean_y

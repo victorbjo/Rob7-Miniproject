@@ -18,16 +18,19 @@ def main(path): #Pretty much pseudo code
 
     #Run function x for every 20 pixel
     for y in range(0, height, 40):
+        print("current y")
+        print(y)
         for x in range(0, width, 40):
             sepFilterResults = SepFilter.sepFil(picture, x, y)
             hough_circle_dataframe = HC.initial_hough_Dataframe()
             for idx, result in enumerate(sepFilterResults):
                 if result >= 0.05:
-                    r = idx*10+20
+                    r = idx*10+10
                     isCircle, circled_object, hough_score, mean_x, mean_y = HC.HoughCircles(picture, x, y, r)
                     new_row = [isCircle, circled_object, hough_score, mean_x, mean_y]
                     HC.append_hough_row(hough_circle_dataframe, new_row)
                     print("new possible circle!")
+                    print(isCircle)
                     print(result)
                     print(idx)
                     print("y ")
@@ -45,7 +48,7 @@ def main(path): #Pretty much pseudo code
                         print("circle detected!")
             
             # print(hough_circle_dataframe[hough_circle_dataframe['IS CIRCLE']])
-        print(y)
+        
 
     cv2.imshow('a', picture)
     cv2.waitKey()
