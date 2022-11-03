@@ -37,7 +37,7 @@ def SepScore(n,n1,n2,p1,p2,pm,i):
     for x in range(n):
         A  += (i[x]-pm)**2
     B = (n1 * (p1 - pm)**2) + (n2 * (p2 - pm)**2)
-
+    print(A,B)
     WeirdN = B/A
     return WeirdN
 

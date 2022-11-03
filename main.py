@@ -11,6 +11,7 @@ def main(path): #Pretty much pseudo code
     cv2.imshow('a', picture)
     cv2.waitKey()
     picture = pp.preprocessing(picture)
+    print("preprocessing done!")
     width = len(picture[0])
     height = len(picture)
 
@@ -20,7 +21,7 @@ def main(path): #Pretty much pseudo code
             sepFilterResults = SepFilter.sepFil(picture, x, y)
             hough_circle_dataframe = HC.initial_hough_Dataframe()
             for idx, result in enumerate(sepFilterResults):
-                if result >= 0.1:
+                if result >= 0.05:
                     r = idx*10+20
                     isCircle, circled_object, hough_score, mean_x, mean_y = HC.HoughCircles(picture, x, y, r)
                     new_row = [isCircle, circled_object, hough_score, mean_x, mean_y]
@@ -30,7 +31,9 @@ def main(path): #Pretty much pseudo code
                     print(y)
                     print(x)
                     print(result)
-            hough_circle_dataframe[hough_circle_dataframe['IS CIRCLE']]
+                    print("circle detected!")
+            
+            print(hough_circle_dataframe[hough_circle_dataframe['IS CIRCLE']])
         print(y)
 
     cv2.imshow('a', picture)
