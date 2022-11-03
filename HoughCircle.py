@@ -54,7 +54,7 @@ def HoughCircles(picture, window_i, window_j, rr):
     if True:
         # print('immmmmmmmmmmmm heeeeeeeeeeeeeeeeeeeere')
         isCircle = 1
-        circled_object = circleDrawing(mean_x, mean_y, rr, width, height, 5)*100 # circleDrawing(mean_x, mean_y, rr+2, width, height, 5)*250 + cv2.line(picture, (mean_y-5, mean_x ), (mean_y+5, mean_x), (255), 5) + cv2.line(picture, (mean_y, mean_x-5), (mean_y, mean_x+5), (255), 5)
+        circled_object = circleDrawing(mean_x, mean_y, rr, width, height, 3)*100 # circleDrawing(mean_x, mean_y, rr+2, width, height, 5)*250 + cv2.line(picture, (mean_y-5, mean_x ), (mean_y+5, mean_x), (255), 5) + cv2.line(picture, (mean_y, mean_x-5), (mean_y, mean_x+5), (255), 5)
     return isCircle, circled_object, img_blank_larg_val, mean_x, mean_y
         
         

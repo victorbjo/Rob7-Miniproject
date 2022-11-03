@@ -51,7 +51,7 @@ def preprocessing(img):
 
 
 if __name__ == "__main__":
-    coconut = cv2.imread('Coconuts\coconut2.png')
+    coconut = cv2.imread('Coconuts\coconut.png')
     gray = cv2.cvtColor(coconut,cv2.COLOR_BGR2GRAY)
     #coconut1 = cv2.imread('Coconuts\coconut1.png')
     #coconut2 = cv2.imread('Coconuts\coconut2.png')
