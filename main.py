@@ -9,9 +9,10 @@ import matplotlib.pyplot as plt
 def main(path): #Pretty much pseudo code
     np.seterr(divide='ignore', invalid='ignore')
     picture = cv2.imread(path)
+    picture = pp.preprocessing(picture)
     cv2.imshow('a', picture)
     cv2.waitKey()
-    picture = pp.preprocessing(picture)
+
     print("preprocessing done!")
     width = len(picture[0])
     height = len(picture)
@@ -25,7 +26,7 @@ def main(path): #Pretty much pseudo code
             hough_circle_dataframe = HC.initial_hough_Dataframe()
             for idx, result in enumerate(sepFilterResults):
                 if result >= 0.04:
-                    r = idx*10+15
+                    r = idx*5+10
                     isCircle, circled_object, hough_score, mean_x, mean_y = HC.HoughCircles(picture, x, y, r)
                     new_row = [isCircle, circled_object, hough_score, mean_x, mean_y]
                     HC.append_hough_row(hough_circle_dataframe, new_row)
@@ -42,11 +43,12 @@ def main(path): #Pretty much pseudo code
                     print("hough score")
                     print(hough_score)
                     # plt.imshow(circled_object)
-                    cv2.imshow('possible circle',circled_object)
-                    cv2.waitKey()
+                   
 
                     if isCircle == 1 :
-                        print("circle detected!")   
+                        print("circle detected!")
+                        cv2.imshow('possible circle',circled_object)
+                        cv2.waitKey()   
 
             
             # print(hough_circle_dataframe[hough_circle_dataframe['IS CIRCLE']])

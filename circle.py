@@ -21,7 +21,7 @@ def distance_list(height_size, width_size, pos_x, pos_y):
 # dist_list_row = distance_list(height, y0)
 # dist_list_column = distance_list(width, x0)
    
-def circleDrawing( x0, y0, r, width = 320, height = 240):
+def circleDrawing( x0, y0, r, width = 320, height = 240, threshold = 0.6):
     # creating dummy metrices to calculate distance to the center
     # distance calculation of all matrix elements to the center of the circle
     # # drawing the circle
@@ -29,7 +29,7 @@ def circleDrawing( x0, y0, r, width = 320, height = 240):
     dist = distance_list(height, width, x0, y0)
     df = pandas.DataFrame(dist)
     mask1 = pandas.DataFrame(np.zeros((height, width)))
-    threshold = 0.6
+
     mask1[df > (r - threshold)] = 1
     mask2 = pandas.DataFrame(np.zeros((height, width)))
     mask2[df < (r + threshold)] = 1

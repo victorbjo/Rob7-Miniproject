@@ -10,7 +10,7 @@ import pandas as pd
 # width = 320
 # height = 240
 
-threshold_circle_check =  30
+threshold_circle_check =  25
 
 img = cv2.imread('Coconuts\coconut.png')
 
@@ -18,6 +18,7 @@ def HoughCircles(picture, window_i, window_j, rr):
     isCircle = 0
     height, width= picture.shape
     # img1 = Preprocessing.preprocessing(img) # already preprocessed
+
     img_blank = np.zeros( picture.shape)
     circled_object = img_blank
      
@@ -35,22 +36,25 @@ def HoughCircles(picture, window_i, window_j, rr):
         for j in range(max(window_j - rr, 0), min(window_j + rr, height)):
             if picture[j, i]>0:
                 img_blank = img_blank + circleDrawing(i, j, rr, width, height)
-    plt.imshow(img_blank,cmap='gray')
+    # plt.imshow(img_blank,cmap='gray')
+    # cv2.imshow('hough', img_blank)
+    # cv2.waitKey()
     number_mean = int(rr/4)
     img_blank_larg_ind = largest_indices(img_blank, number_mean) ###################### maybe change 2 * rr
     mean_x = int(img_blank_larg_ind[1].sum()/number_mean)
     mean_y = int(img_blank_larg_ind[0].sum()/number_mean)
     print("distance")
-    print(np.power(np.power(np.abs(window_i + rr - mean_x),2)+np.power(np.abs(window_j + rr - mean_y),2),0.5))
+    distance_radius = np.power(np.power(np.abs(window_i +rr - mean_x),2)+np.power(np.abs(window_j +rr - mean_y),2),0.5)
+    print(distance_radius)
     print("radius")
     print(rr)
     # print(mean_x)
     # print( mean_y)
     img_blank_larg_val = np.mean(img_blank[img_blank_larg_ind])
-    if np.power(np.power(np.abs(window_i +rr - mean_x),2)+np.power(np.abs(window_j +rr - mean_y),2),0.5) < threshold_circle_check :
+    if distance_radius < threshold_circle_check :
         # print('immmmmmmmmmmmm heeeeeeeeeeeeeeeeeeeere')
         isCircle = 1
-        circled_object = picture + circleDrawing(mean_x, mean_y, rr, width, height)*200
+        circled_object = picture + circleDrawing(mean_x, mean_y, rr, width, height)*250 + circleDrawing(mean_x, mean_y, rr+2, width, height)*250 + cv2.line(picture, (mean_y-5, mean_x ), (mean_y+5, mean_x), (255), 5) + cv2.line(picture, (mean_y, mean_x-5), (mean_y, mean_x+5), (255), 5)
     return isCircle, circled_object, img_blank_larg_val, mean_x, mean_y
         
         
