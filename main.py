@@ -4,9 +4,10 @@ import numpy as np
 import SepFilter
 import HoughCircle as HC
 import Preprocessing as pp
-
+import matplotlib.pyplot as plt
 
 def main(path): #Pretty much pseudo code
+    np.seterr(divide='ignore', invalid='ignore')
     picture = cv2.imread(path)
     cv2.imshow('a', picture)
     cv2.waitKey()
@@ -26,14 +27,24 @@ def main(path): #Pretty much pseudo code
                     isCircle, circled_object, hough_score, mean_x, mean_y = HC.HoughCircles(picture, x, y, r)
                     new_row = [isCircle, circled_object, hough_score, mean_x, mean_y]
                     HC.append_hough_row(hough_circle_dataframe, new_row)
+                    print("new possible circle!")
                     print(result)
                     print(idx)
+                    print("y ")
                     print(y)
+                    print(mean_y)
+                    print("x")
                     print(x)
-                    print(result)
-                    print("circle detected!")
+                    print(mean_x)
+                    print("hough score")
+                    print(hough_score)
+                    # plt.imshow(circled_object)
+                    cv2.imshow('possible circle',circled_object)
+                    cv2.waitKey()
+                    if isCircle == 1 :
+                        print("circle detected!")
             
-            print(hough_circle_dataframe[hough_circle_dataframe['IS CIRCLE']])
+            # print(hough_circle_dataframe[hough_circle_dataframe['IS CIRCLE']])
         print(y)
 
     cv2.imshow('a', picture)
