@@ -64,4 +64,5 @@ def append_hough_row(df, new_row):
     return pd.concat([ df, pd.DataFrame([new_row], columns=columns_name())], join = "inner")
 def columns_name():
     return ['IS CIRCLE', 'CIRCLED IMG', 'HOUGH SCORE', 'MEAN X', ' MEAN Y']
-
+def initial_hough_Dataframe():
+    return pd.DataFrame([], columns= columns_name())
