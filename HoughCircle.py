@@ -10,7 +10,7 @@ import pandas as pd
 # width = 320
 # height = 240
 
-threshold_circle_check =  20
+threshold_circle_check =  30
 
 img = cv2.imread('Coconuts\coconut.png')
 

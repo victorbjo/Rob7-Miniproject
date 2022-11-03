@@ -24,8 +24,8 @@ def main(path): #Pretty much pseudo code
             sepFilterResults = SepFilter.sepFil(picture, x, y)
             hough_circle_dataframe = HC.initial_hough_Dataframe()
             for idx, result in enumerate(sepFilterResults):
-                if result >= 0.05:
-                    r = idx*10+10
+                if result >= 0.04:
+                    r = idx*10+15
                     isCircle, circled_object, hough_score, mean_x, mean_y = HC.HoughCircles(picture, x, y, r)
                     new_row = [isCircle, circled_object, hough_score, mean_x, mean_y]
                     HC.append_hough_row(hough_circle_dataframe, new_row)
@@ -42,10 +42,11 @@ def main(path): #Pretty much pseudo code
                     print("hough score")
                     print(hough_score)
                     # plt.imshow(circled_object)
+                    cv2.imshow('possible circle',circled_object)
+                    cv2.waitKey()
+
                     if isCircle == 1 :
                         print("circle detected!")   
-                        cv2.imshow('possible circle',circled_object)
-                        cv2.waitKey()
 
             
             # print(hough_circle_dataframe[hough_circle_dataframe['IS CIRCLE']])
@@ -55,7 +56,7 @@ def main(path): #Pretty much pseudo code
     cv2.waitKey()
 
 if __name__ == "__main__":
-    main('Coconuts\coconutT.png')
+    main('Coconuts\circles_pieces.png')
 
 '''
 TODO: We need to fix preprocessing, and make it easilier callable
